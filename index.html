@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud Análisis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="icon" href = "imagenes/logoico.ico">
+
+
+    <style>  
+        .email-button {  
+                background-color: #31475d;  
+                color: white;  
+                padding: 10px 35px;   
+             text-align: center; 
+             text-decoration: none; 
+             display: inline-block;   
+             font-size: 16px; 
+             margin: 4px 2px;   
+             cursor: pointer;
+             border: none;  
+             border-radius: 5px; 
+             height: 70px; 
+         }  
+         .pdf-button {  
+                background-color: #3e8a37;  
+                color: white;   
+                padding: 10px 20px; 
+             text-align: center; 
+             text-decoration: none; 
+             display: inline-block;   
+             font-size: 16px;  
+             margin: 4px 2px; 
+             cursor: pointer; 
+             border: none;  
+             border-radius: 5px;  
+             height: 70px;
+         }  
+        </style>           
+</head>
+
+<body>
+    <header>
+        <div>
+            <img src="imagenes/PrimorisLogo.png" width="180">
+            <a class="position-absolute top-0 end-0" href="imagenes/Formato para Solicitud de Análisis Manual.xlsx"> (<span style="font-size: 0.9em;">Clic: para descargar formato en Excel</span>)</a>
+        </div>
+         <br/>
+        <div >
+            <h2 class="col-mt-8 offset-md-3" > Diligenciamiento solicitud de servicio </h2>
+        </div>
+    </header>
+  <style>  
+        .minimize-space {  
+            margin-bottom: 1px;  
+        }  
+  </style>
+
+    <div class="container mt-4">
+        <hr>
+        <div class="row">
+            <div class="offset-md-1 col-md-10">
+                <form id="form">
+
+                    <h4> Datos empresa solicitante </h4>
+                    <div class="mb-3">
+                        <div class="row mb-3 ">
+                            <div class="col-md-6">
+                            <label for="NombreSolicitante" class="form-label minimize-space">Empresa o persona titular del resultado:</label>
+                            <input type="text" class="form-control" id="NombreSolicitante" required>
+                            </div>
+                            <div class="col-md-6">
+                            <label for="Nit" class="form-label minimize-space"> RUC o Cédula:</label>
+                            <input type="text" class="form-control" id="Nit" required>
+                            </div>
+                        </div>
+                   
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="Direccion" class="form-label minimize-space">Dirección:</label>
+                            <input type="text" class="form-control" id="Direccion">
+                            </div>
+                            <div class="col-md-6">
+                            <label for="Ciudad" class="form-label minimize-space">Ciudad/Departamento:</label>
+                            <input type="text" class="form-control" id="Ciudad">
+                            </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="PersonaContacto"class="form-label minimize-space">Persona de contacto:</label>
+                            <input type="text" class="form-control" id="PersonaContacto">
+                            </div>
+                            <div class="col-md-6 ">
+                            <label for="TelefonoContacto"class="form-label minimize-space">Teléfono:</label>
+                            <input type="text" class="form-control" id="TelefonoContacto">
+                            </div>
+                        </div>
+    
+                            
+                        <br/> 
+                    </div>
+    
+                        <div class>
+                            <h4> Información de facturación 💲</h4><br/>
+                            <h6> ¿Es la misma empresa a la que se factura? </h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            <div class="form-check-inline">
+                              <input class="form-check-input" type="checkbox" id="FacturanteNo">
+                              <label class="form-check-label" for="FacturanteNo">
+                                No
+                              </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="FacturanteSi">
+                                <label class="form-check-label" for="FacturanteSi">
+                                  Si
+                                </label>
+                            </div>
+                          
+                            <!-- Contenido colapsable -->
+                            <div id="collapseFacturante" class="collapse mt-3">
+                              <div class="card card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                    <label for="NombreFacturante"class="form-label minimize-space">Empresa a la que factura:</label>
+                                    <input type="text" class="form-control" id="NombreFacturante">
+                                    </div>
+                                    <div class="col-md-6">
+                                    <label for="NitFacturante"class="form-label minimize-space"> RUC o Cédula:</label>
+                                    <input type="text" class="form-control" id="NitFacturante">
+                                    </div>
+                                </div>
+                           
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                    <label for="DireccionFacturante"class="form-label minimize-space">Dirección:</label>
+                                    <input type="text" class="form-control" id="DireccionFacturante">
+                                    </div>
+                                    <div class="col-md-6">
+                                    <label for="CuidadFacturante"class="form-label minimize-space">Ciudad/Departamento:</label>
+                                    <input type="text" class="form-control" id="CuidadFacturante">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="TelefonoFacturante"class="form-label minimize-space">Teléfono:</label>
+                                        <input type="text" class="form-control" id="TelefonoFacturante">
+                                    </div>
+                                    <div class="col-md-11">
+                                
+                                      <label for="fact"class="form-label minimize-space">Escriba el correo para el envío de factura electrónica:</label>
+                                       <input type="text" class="form-control" id="fact">
+                                  
+                                      </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <br/>                   
+                        <br/> 
+                        <br/> 
+
+
+
+                        <h4> Datos de la muestra <span style="font-size: 0.5em;">🥑🍎 🍌</span></h4>                                                 <!-- DATOS DE LA MUESTRA -->
+                    <div class="mb-3">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="matriz" class="form-label minimize-space">Escriba la Matriz producto/variedad (<span style="font-size: 0.8em;">futa, agua, suelo o producto a analizar</span>):</label>
+                            <input type="text" class="form-control" id="matriz"required>
+                            </div>
+                             <!-- 
+                            <div class="col-md-6">
+                              
+                            <label for="lugar" class="form-label minimize-space"> Lugar de muestreo:</label>
+                            <input type="text" class="form-control" id="lugar">
+                            
+                            </div>
+                        </div>
+                   
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                            <label for="productor" class="form-label minimize-space">Productor/Porveedor:</label>
+                            <input type="text" class="form-control" id="productor">
+                            
+                            </div>
+                            -->
+                            <div class="col-md-6">
+                            <label for="fecha" class="form-label minimize-space">Fecha de muestreo:</label>
+                            <input type="date" class="form-control" id="fecha"required>
+                            </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                            <label for="codigo"class="form-label minimize-space">Codigo/Lote/Referencia con la que identifica su muestra:</label>
+                            <input type="text" class="form-control" id="codigo">
+                            </div>
+                             <!-- 
+                            <div class="col-md-6">
+                            <label for="sampler"class="form-label minimize-space">Muestreador, persona que toma la muestra:</label>
+                            <input type="text" class="form-control" id="sampler">
+                            </div>
+                            -->
+                        </div>
+
+                        <!--
+                        <div class="row  col-md-12">
+                                <label for="infadicional"class="form-label minimize-space" style="font-size: 0.9em;">Si tiene informacion adicional que quiera que se emita en su informe de resultado, escribala:</label>
+                                <input type="text" class="form-control" id="infadicional">
+                        </div>
+                        -->
+
+        
+                        <br/> 
+                    </div>
+                    <br/> 
+                        
+                    <!-- lista desplegable  MULTIRESIDUO -->
+
+                    <h4 class="col-mt-8 offset-md-3" >Análisis a solicitar 🔬 </h4> 
+                        <div class="mb-3">
+                            <label for="multiresiduo" class="form-label minimize-space" >Multiresiduos de plagicidas químicos </label>
+                            <select class="form-select" id="multiresiduo">
+                                <option value=" ">Seleccione</option>
+                                <option style="font-weight:bold" value="(GMS + LMS)  Análisi de multiresiduo de pesticidas convencional 645 moléculas">(GMS + LMS) Barrido completo 645 moléculas - Cromatografía líquida y gaseosa </option>
+                                <option value="(LMS)        Barrido de solo cromatografía Líquida ">(LMS) Barrido 429 moléculas solo Cromatografía líquida LC </option>
+                                <option value="(GMS)        Barrido de solo cromatografía Gaseosa">(GMS) Barrido 216 moléculas solo Cromatografía gaseosa GC </option>
+                                <option value="(GMSL + LMSlL)  Análisi de multiresiduo de pesticidas Low, con límites mas bajos">(GMSL + LMSL) Barrido 645 moléculas con límites mas bajos (recomendado para orgánicos) </option>
+    
+                            </select>
+                        </div>
+
+
+                        <!-- Checbox  Ditios-->
+                    
+                        <div class="container mt-4">
+                            <h6 class="form-check-inline" > 🔹 ¿Quiere analizar Dithiocarbamatos? </h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="DitiosSi">
+                                <label class="form-check-label" for="DitiosSi">
+                                  ver
+                                </label>
+                            </div>
+                          
+                            <!-- Contenido colapsable Ditios-->
+                            <div id="collapseDitios" class="collapse mt-3">
+                                <div class="card card-body">
+                                <div class="row mb-1 col-md-10">
+                                       <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ditios" id="DT1" value="(CS2)               ditiocarbamatos (LC:0,05ppm)">
+                                        <label class="form-check-label" for="DT1">
+                                          Sumatoria de todos los ditiocarbamatos (LC:0,05ppm)
+                                        </label>
+                                      </div>
+
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ditios" id="DT2" value="(DTC)               ditiocarbamatos (LC:0,01ppm)">
+                                        <label class="form-check-label" for="DT2">
+                                          Sumatoria de todos los ditiocarbamatos (LC:0,01ppm)
+                                        </label>
+                                      </div>   
+                                    </div>
+                                </div>
+
+                              </div>
+
+                          <div class="container mt-4"></div>
+                          <h6 class="form-check-inline" > 🔹 ¿Quiere analizar Micotoxinas? </h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            
+                          <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="MicoSi">
+                                <label class="form-check-label" for="MicoSi">
+                                  ver
+                                </label>
+                            </div>
+
+
+                              <!-- Contenido colapsable Micotoxinas-->
+                            <div id="collapseMico" class="collapse mt-3">
+                                <div class="card card-body">
+                                <div class="row mb-1 col-md-10">
+                                     <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="micotoxinas" id="MC1" value="(MC1)              Micotoxinas totales">
+                                        <label class="form-check-label" for="MC1">
+                                         Micotoxinas totales (Aflatoxinas, Deoxynivalenol, Fumonicinas, T2, Orcratoxina...)
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                       <input class="form-check-input" type="radio" name="micotoxinas" id="AFL" value="(AFLA)            Aflatoxinas B1, B2, G1, G2 y suma">
+                                       <label class="form-check-label" for="AFL">
+                                         Solo Alfatoxinas B1,B2,G1,G2 y suma
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="micotoxinas" id="OTA" value="(OTA)             Ocratoxina A">
+                                        <label class="form-check-label" for="OTA">
+                                          Solo Ocratoxina A
+                                        </label>
+                                      </div>
+                                  </div>
+                                  </div>
+
+                              </div>
+                        </div>  
+                          
+                          
+
+                         <!-- Checbox  METALES -->
+                    
+                         <div class="container mt-4">
+                            <h6 class="form-check-inline" > 🔹 ¿Analizará metales pesados? </h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="metalesSi" value=" ">
+                                <label class="form-check-label" for="metalesSi">
+                                  Si
+                                </label>
+                            </div>
+                          
+                            <!-- Contenido colapsable METALES-->
+                            <div id="collapseMetales" class="collapse mt-3">seleccione cuales
+                              <div class="card card-body"> 
+                                <div class="row mb-3 col-md-6"> 
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="antimonio" value="Antimonio">
+                                            <label class="form-check-label" for="antimonio">
+                                              Antimonio
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="arsenico" value="Arsénico">
+                                            <label class="form-check-label" for="arsenico">
+                                              Arsénico
+                                            </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="boro" value="Boro">
+                                                <label class="form-check-label" for="boro">
+                                                  Boro
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="cadmio" value="Cadmio">
+                                                <label class="form-check-label" for="cadmio">
+                                                  Cadmio
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="cinc" value="Cinc">
+                                                <label class="form-check-label" for="cinc">
+                                                  Cinc
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="cobre" value="Cobre">
+                                                <label class="form-check-label" for="cobre">
+                                                  Cobre
+                                                </label>
+                                            </div>                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="cromo" value="Cromo">
+                                                <label class="form-check-label" for="cromo">
+                                                  Cromo
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="estaño" value="Estaño">
+                                                <label class="form-check-label" for="estaño">
+                                                  Estaño
+                                                </label>
+                                            </div>        
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="hierro" value="Hierro">
+                                                <label class="form-check-label" for="hierro">
+                                                  Hierro
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="magnesio" value="magnesio">
+                                                <label class="form-check-label" for="magnesio">
+                                                  Magnesio
+                                                </label>
+                                              </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="manganeso" value="Manganeso">
+                                                <label class="form-check-label" for="manganeso">
+                                                  Manganeso
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="mercurio" value="Mercurio">
+                                                <label class="form-check-label" for="mercurio">
+                                                  Mercurio
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="plata" value="Plata">
+                                                <label class="form-check-label" for="plata">
+                                                  plata
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="plomo" value="Plomo">
+                                                <label class="form-check-label" for="plomo">
+                                                  Plomo
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selenio" value="Selenio">
+                                                <label class="form-check-label" for="selenio">
+                                                  Selenio
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="sodio" value="Sodio">
+                                                <label class="form-check-label" for="sodio">
+                                                  Sodio
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="potasio" value="Potasio">
+                                                <label class="form-check-label" for="potasio">
+                                                  Potasio
+                                                </label>
+                                            </div>
+       
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Checbox  OTROS -->
+                    
+                        <div class="container mt-4">
+                            <h6 class="form-check-inline" > 🔸 ¿Otros Análisis?   </h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="otrosSi">
+                                <label class="form-check-label" for="otrosSi">
+                                  ver
+                                </label>
+                            </div>
+                          
+                            <!-- Contenido colapsable OTROS-->
+                            <div id="collapseOtros" class="collapse mt-3">
+                                <div class="card card-body">
+                                <div class="row mb-1 col-md-10">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="glyfo" value="(GGA)              Glifostao, glufosinato y ampa " >
+                                            <label class="form-check-label" for="glyfo">
+                                              Glyfosato y sus metabolitos (Glufosinato y Ampa)
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="fosetyl" value="(PAFA)            Fosetil Al " >
+                                            <label class="form-check-label" for="fosetyl">
+                                              Fosetyl-Al, ácido fosfónico y sales
+                                            </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="MINO" value="(MINO)            Hidrocarburos de aceite mineral: MOSH y MOAH" >
+                                                <label class="form-check-label" for="MINO">
+                                                  Determinación de Hidrocarburos de aceite mineral, conocidos como MOSH y MOAH
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="clorato" value="(CLO + PER)  Cloratos + Percloratos" >
+                                                <label class="form-check-label" for="clorato">
+                                                  Clorato y Perclorato
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="diquat" value="(QU2)              Diquat y Paraquat ">
+                                                <label class="form-check-label" for="diquat">
+                                                  Diquat y Paraquat
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="oxEtil" value="(ETHOX)         Oxido de Etileno" >
+                                                <label class="form-check-label" for="oxEtil">
+                                                 Óxido de Etileno
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="acrilamida" value="(ACR)              Acrilamida">
+                                                <label class="form-check-label" for="acrilamida">
+                                                  Acrilamida
+                                                </label>
+                                              </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="amitraz" value="(AMI)               Amitraz y metabolitos (Dmf, Dmpf)">
+                                                <label class="form-check-label" for="amitraz">
+                                                  Amitraz y metabolitos (Dmf, Dmpf)
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gmo" value="(GMOS)              Organismos genéticamente modificados, (análisis de presencia o no presencia)">
+                                                <label class="form-check-label" for="gmo">
+                                                  GMO: Organismos genéticamente modificados, (análisis de presencia o no presencia)
+                                                </label>
+                                              </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--
+                        <script>
+                            // Función para manejar el cambio en los elementos de entrada
+                            function handleChange(event) {
+                              const element = event.target;
+                             element.value = element.checked ? 'X' : '';
+                             }
+
+                                // Lista de IDs de los elementos
+                                const ids = ['normal', 'express'
+                                ];
+
+                                // Añadir el event listener a cada elemento con ID en la lista
+                                ids.forEach(id => {
+                                     const element = document.getElementById(id);
+                                     if (element) {
+                                     element.addEventListener('change', handleChange);
+                                  }
+                             });   
+                        </script>
+                        -->
+
+                         <!-- Checbox  MRL -->
+                    
+                         <div class="mt-3 offset-md--1 col-md-20">
+                            <h6 class="form-check-inline mt-5 offset-md--1 col-md-20"style="color: #666;" > ¿Quiere que sus resultados se comparen con límites para productos orgánicos? </h6>                        
+                           
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="OrgSi" value=" ">
+                                <label class="form-check-label" for="OrgSi">
+                                  Si&nbsp;&nbsp;&nbsp; 
+                                </label>
+                                <input class="form-check-input" type="checkbox" id="OrgNo" value=" ">
+                                <label class="form-check-label" for="OrgNo">
+                                  No
+                                </label>
+                            </div>
+                        </div>
+                                          
+                                
+          
+                          <!-- Incluye jQuery y Bootstrap JS -->
+                          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+                          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                          
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox DE FACTURANTE
+                            document.getElementById('FacturanteNo').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseFacturante');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('FacturanteSi').checked=false;
+                              } else {
+                                $(collapseContent).collapse('hide')
+                                document.getElementById('FacturanteSi').checked=true;                            
+                              }
+                            });
+    
+                            document.getElementById('FacturanteSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseFacturante');
+                              if (this.checked) {
+                                $(collapseContent).collapse('hide')
+                                document.getElementById('FacturanteNo').checked=false;
+                              } else {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('FacturanteNo').checked=true;                            
+                              }
+                            });
+    
+                        </script>
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox de OTROS
+                            document.getElementById('otrosSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseOtros');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('otrosSi').checked;
+                                
+                              } else {
+                                $(collapseContent).collapse('hide')                           
+                              }
+                            });
+                        </script>
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox de DITIOS
+                            document.getElementById('DitiosSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseDitios');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('DitiosSi').checked;
+                                
+                              } else {
+                                $(collapseContent).collapse('hide')                           
+                              }
+                            });
+                        </script>
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox de Micotoxinas
+                            document.getElementById('MicoSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseMico');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('MicoSi').checked;
+                                
+                              } else {
+                                $(collapseContent).collapse('hide')                           
+                              }
+                            });
+                        </script>
+
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox de METALES
+                            document.getElementById('metalesSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseMetales');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('metalesSi').checked;
+                                document.getElementById('metalesSi').value = 'Metales:';
+                                
+                              } else {
+                                $(collapseContent).collapse('hide') 
+                                document.getElementById('metalesSi').value = ' '
+                                                      
+                              }
+                            });
+                        </script>
+
+                        <script>
+                            // Función para alternar el colapso basado en el estado del checkbox de MRL
+                            document.getElementById('MRLSi').addEventListener('change', function() {
+                              const collapseContent = document.getElementById('collapseMRL');
+                              if (this.checked) {
+                                $(collapseContent).collapse('show')
+                                document.getElementById('MRLSi').checked;
+                                document.getElementById('MRLSi').value = 'SI';
+                                
+                              } else {
+                                $(collapseContent).collapse('hide') 
+                                document.getElementById('MRLSi').value = ' '
+                                                      
+                              }
+                            });
+                        </script>
+                          <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            function enableToggleRadios(groupName) {
+                                const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+                                let selected = null;
+
+                                radios.forEach(radio => {
+                                    radio.addEventListener('click', function () {
+                                        if (this === selected) {
+                                            this.checked = false;
+                                            selected = null;
+                                        } else {
+                                            selected = this;
+                                        }
+                                    });
+                                });
+                            }
+
+                            enableToggleRadios('micotoxinas');
+                            enableToggleRadios('ditios');
+                        });
+                        </script>
+
+                        <div class=" mt-5">
+                            <h6> Seleccione el tipo de Servicio <span style="font-size: 0.7em;">▶️⏩⏭️</span></h6>                        
+                            <!-- Checkbox para controlar el colapso -->
+                            <div class="form-check ">
+                              <input class="form-check-input" type="radio" name="tipoServicio"id="normal" value="X">
+                              <label class="form-check-label" for="normal" style="font-size: 0.8em;">
+                                NORMAL 5-6 días hábiles
+                              </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipoServicio"id="express" value="X">
+                                <label class="form-check-label" for="express"style="font-size: 0.8em;">
+                                  URGENTE 4 días hábiles (Costo diferente)
+                                </label>
+                            </div>
+                           
+                        </div>
+
+                                 <div> 
+                                      <p style="font-size: 0.6em;">  
+                                       Tenga en cuenta que servicios como metales, Cloratos, percloratos y otros análisis tienen tiempos de entrega diferentes. Para servicio URGENTE aplica unicamente para multiresiduos, ditiocarbamatos y glyfosato.*  
+                                        </p> 
+                                        <br/>
+
+                                        <p class="minimize-space" style="font-size: 0.8em;"> 
+                                            <strong><span style="font-size: 1.2em;">Observaciones:   </span></strong>
+                                            Aquí puede especificar si requiere hacer análisis a alguna molécula en específico u otro tipo de análisis.    Escriba todas las observaciones o especificaciones a comunicar al laboratorio sobre esta muestra. :
+                                         </p> 
+                                    <div class="row  col-md-13">       
+                                        <label for="anotaciones"class="form-label "></label>
+                                            <input type="text" class="form-control" id="anotaciones">
+                                    </div> 
+                                 </div> 
+                                 
+                                 <div>
+                                <div class="row">
+                                    <div class="col-md-6 mt-3">
+                                        <label for="fechaenvio" class="form-label minimize-space">Fecha de envío de la muestra:</label>
+                                        <input type="date" class="form-control" id="fechaenvio">
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label for="enviante" class="form-label minimize-space"> Persona responsable:</label>
+                                        <input type="text" class="form-control" id="enviante">
+                                    </div>
+                                    </div>
+                                </div>
+                        
+                        
+                                     <br/>
+
+
+                    <button type="submit" class="pdf-button"> 1. Generar solicitud PDF </button>
+                    <span style="font-size: 10px; color: rgba(202, 204, 203, 0.5); display: block;">    </span>
+
+                    <title>Botón para Enviar Correo</title>  
+                        
+                       <a id="enviarCorreoBtn" href="#" class="email-button">
+                        2. Enviar por correo        
+                        <span style="font-size: 10px; color: rgba(248, 253, 251, 0.5); display: block;">     (No olvide adjuntar el PDF)</span>
+                      </a>
+    
+                        <script>
+                        document.getElementById("enviarCorreoBtn").addEventListener("click", function () {
+                          const nombre = document.getElementById("NombreSolicitante").value.trim();
+                          if (!nombre) {
+                          alert("Por favor, completa el campo 'Empresa o persona titular del resultado'.");
+                          return;
+                        }
+
+                          const destinatarios = "registro@primoris-lab.ec;luz.romero@primoris-lab.ec;christian.velasco@primoris-lab.ec";
+                          const asunto = `Solicitud de servicio / Demanda de análisis ${nombre}`;
+                          const cuerpo = `Cordial saludo, Adjunto solicitud de servicio para ...`;
+
+                          const mailtoLink = `mailto:${destinatarios}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+                          
+                          // Redirigir al mailto
+                          window.location.href = mailtoLink;
+                        });
+                      </script>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
