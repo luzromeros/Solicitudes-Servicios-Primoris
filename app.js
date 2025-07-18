@@ -157,7 +157,7 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     pdf.setFontSize(7);
     pdf.text(TelefonoContacto, 450, 151);
     pdf.text(CuidadFacturante, 125,209);
-    pdf.text(DireccionFacturante, 200, 209);
+    pdf.text('- '+DireccionFacturante, 190, 209);
     pdf.setFontSize(9);
     pdf.text(NombreFacturante, 125, 195);
     pdf.text(NitFacturante, 450, 195);
