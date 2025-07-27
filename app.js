@@ -148,29 +148,29 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     pdf.addImage(image, 'PNG', 0, 0, 612, 792);
     
     pdf.setFontSize(9);
-    pdf.text(NombreSolicitante, 125, 126);
-    pdf.text(Nit, 450, 126);
-    pdf.text(Direccion, 125, 140);
-    pdf.text(Ciudad, 450, 140);
-    pdf.setFontSize(7);
-    pdf.text(PersonaContacto, 125, 151);
-    pdf.setFontSize(7);
-    pdf.text(TelefonoContacto, 450, 151);
-    pdf.text(CuidadFacturante, 125,209);
-    pdf.text('- '+DireccionFacturante, 190, 209);
+    pdf.text(NombreSolicitante, 130, 155);
+    pdf.text(Nit, 448, 155);
+    pdf.text(Direccion, 130, 165);
+    pdf.text(Ciudad, 448, 165);
+    pdf.setFontSize(8);
+    pdf.text(PersonaContacto, 130, 175);
+    pdf.setFontSize(8);
+    pdf.text(TelefonoContacto, 448, 175);
+    pdf.text(CuidadFacturante, 130,217);
+    pdf.text('- '+DireccionFacturante, 200, 217);
     pdf.setFontSize(9);
-    pdf.text(NombreFacturante, 125, 195);
-    pdf.text(NitFacturante, 450, 195);
-    pdf.text(TelefonoFacturante, 450,209);
+    pdf.text(NombreFacturante, 130, 205);
+    pdf.text(NitFacturante, 448, 217);
+    pdf.text(TelefonoFacturante, 448,217);
     
     pdf.setFontSize(8);
-    pdf.text(fact, 125, 221);
+    pdf.text(fact, 130, 227);
 
     
     pdf.setFontSize(8);
-    pdf.text(matriz, 175, 260);
+    pdf.text(matriz, 175, 265);
     //pdf.text(productor, 220, 280);
-    pdf.text(fecha, 450, 260);
+    pdf.text(fecha, 448, 263);
     pdf.text(codigo, 175, 280);
     //pdf.text(sampler, 545, 295);
     //pdf.text(infadicional, 220, 315);
@@ -194,7 +194,7 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     .join(', ');  
 
     pdf.setFontSize(9);
-    pdf.text(selectedValues, 100, 365);
+    pdf.text(selectedValues, 118, 365);
      
     pdf.text(metalesSi.value, 60, 365);
 
@@ -230,26 +230,26 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     const orgSi = document.getElementById('OrgSi');
     const orgNo = document.getElementById('OrgNo');
     if (orgSi.checked) {
-    pdf.text('X', 360, 496); // Coordenadas para el "Sí"
+    pdf.text('X', 358, 488); // Coordenadas para el "Sí"
     }
     if (orgNo.checked) {
-    pdf.text('X', 450, 496); // Coordenadas para el "No"
+    pdf.text('X', 448, 488); // Coordenadas para el "No"
     }
     pdf.setFontSize(10);
     if (document.getElementById("normal").checked) {
-    pdf.text("X", 150, 560);  // Coordenadas para "normal"
+    pdf.text("X", 157, 548);  // Coordenadas para "normal"
     } else if (document.getElementById("express").checked) {
-    pdf.text("X", 285, 560);  // Coordenadas para "express"
+    pdf.text("X", 292, 548);  // Coordenadas para "express"
     }
  
 
     pdf.setFontSize(8);
     const maxWidth = 450; // ancho máximo
     const lines = pdf.splitTextToSize(anotaciones, maxWidth);  
-    pdf.text(lines, 125, 523); 
+    pdf.text(lines, 125, 514); 
    
-    pdf.text(fechaenvio, 240, 598);
-    pdf.text(enviante, 435, 598);
+    pdf.text(fechaenvio, 240, 584);
+    pdf.text(enviante, 435, 584);
   
 
     pdf.save("Solicitud_Analisis_PRIMORIS.pdf");
