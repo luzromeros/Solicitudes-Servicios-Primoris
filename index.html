@@ -49,8 +49,8 @@
 <body>
     <header>
         <div>
-            <img src="imagenes/PrimorisLogo.png" width="190">
-            <a class="position-absolute top-0 end-0" href="imagenes/Formato para Solicitud de Análisis Manual.xlsx"> (<span style="font-size: 0.4em;">Clic: para descargar formato manual en Excel</span>)</a>
+            <img src="imagenes/PrimorisLogo.png" width="180">
+            <a class="position-absolute top-0 end-0" href="imagenes/Formato para Solicitud de Análisis Manual.xlsx"> (<span style="font-size: 0.9em;">Clic: para descargar formato en Excel</span>)</a>
         </div>
          <br/>
         <div >
@@ -80,7 +80,7 @@
                             <label for="Nit" class="form-label minimize-space"> RUC o Cédula:</label>
                             <input type="text" class="form-control" id="Nit" required>
                             </div>
-                        </div>
+                          </div>
                    
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -176,22 +176,6 @@
                             <label for="matriz" class="form-label minimize-space">Escriba la Matriz producto/variedad (<span style="font-size: 0.8em;">fruta, agua, suelo o producto a analizar</span>):</label>
                             <input type="text" class="form-control" id="matriz"required>
                             </div>
-                             <!-- 
-                            <div class="col-md-6">
-                              
-                            <label for="lugar" class="form-label minimize-space"> Lugar de muestreo:</label>
-                            <input type="text" class="form-control" id="lugar">
-                            
-                            </div>
-                        </div>
-                   
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                            <label for="productor" class="form-label minimize-space">Productor/Porveedor:</label>
-                            <input type="text" class="form-control" id="productor">
-                            
-                            </div>
-                            -->
                             <div class="col-md-6">
                             <label for="fecha" class="form-label minimize-space">Fecha de muestreo:</label>
                             <input type="date" class="form-control" id="fecha"required>
@@ -203,22 +187,7 @@
                             <label for="codigo"class="form-label minimize-space">Codigo/Lote/Referencia con la que identifica su muestra:</label>
                             <input type="text" class="form-control" id="codigo">
                             </div>
-                             <!-- 
-                            <div class="col-md-6">
-                            <label for="sampler"class="form-label minimize-space">Muestreador, persona que toma la muestra:</label>
-                            <input type="text" class="form-control" id="sampler">
-                            </div>
-                            -->
-                        </div>
-
-                        <!--
-                        <div class="row  col-md-12">
-                                <label for="infadicional"class="form-label minimize-space" style="font-size: 0.9em;">Si tiene informacion adicional que quiera que se emita en su informe de resultado, escribala:</label>
-                                <input type="text" class="form-control" id="infadicional">
-                        </div>
-                        -->
-
-        
+                        </div>        
                         <br/> 
                     </div>
                     <br/> 
@@ -231,9 +200,9 @@
                             <select class="form-select" id="multiresiduo">
                                 <option value=" ">Seleccione</option>
                                 <option style="font-weight:bold" value="(GMS + LMS)  Análisi de multiresiduo de pesticidas convencional 645 moléculas">(GMS + LMS) Barrido completo 645 moléculas - Cromatografía líquida y gaseosa </option>
-                                <option value="(LMS)        Barrido de solo cromatografía Líquida ">(LMS) Barrido 429 moléculas solo Cromatografía líquida LC </option>
-                                <option value="(GMS)        Barrido de solo cromatografía Gaseosa">(GMS) Barrido 216 moléculas solo Cromatografía gaseosa GC </option>
-                                <option value="(GMSL + LMSlL)  Análisi de multiresiduo de pesticidas Low, con límites mas bajos">(GMSL + LMSL) Barrido 645 moléculas con límites mas bajos (recomendado para orgánicos) </option>
+                                <option value="(LMS)             Barrido de solo cromatografía Líquida ">(LMS) Barrido 429 moléculas solo Cromatografía líquida LC </option>
+                                <option value="(GMS)             Barrido de solo cromatografía Gaseosa">(GMS) Barrido 216 moléculas solo Cromatografía gaseosa GC </option>
+                                <option value="(GMSL + LMSlL)Análisi de multiresiduo de pesticidas Low, con límites mas bajos">(GMSL + LMSL) Barrido 645 moléculas con límites mas bajos (recomendado para orgánicos) </option>
     
                             </select>
                         </div>
@@ -257,14 +226,14 @@
                                 <div class="card card-body">
                                 <div class="row mb-1 col-md-10">
                                        <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ditios" id="DT1" value="(CS2)               ditiocarbamatos (LC:0,05ppm)">
+                                        <input class="form-check-input" type="radio" name="ditios" id="DT1" value="(CS2)              ditiocarbamatos (LC:0,05ppm)">
                                         <label class="form-check-label" for="DT1">
                                           Sumatoria de todos los ditiocarbamatos (LC:0,05ppm)
                                         </label>
                                       </div>
 
                                       <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ditios" id="DT2" value="(DTC)               ditiocarbamatos (LC:0,01ppm)">
+                                        <input class="form-check-input" type="radio" name="ditios" id="DT2" value="(DTC)              ditiocarbamatos (LC:0,01ppm)">
                                         <label class="form-check-label" for="DT2">
                                           Sumatoria de todos los ditiocarbamatos (LC:0,01ppm)
                                         </label>
@@ -460,19 +429,19 @@
                                 <div class="card card-body">
                                 <div class="row mb-1 col-md-10">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="glyfo" value="(GGA)              Glifostao, glufosinato y ampa " >
+                                            <input class="form-check-input" type="checkbox" id="glyfo" value="(GGA)             Glifostao, glufosinato y ampa " >
                                             <label class="form-check-label" for="glyfo">
                                               Glyfosato y sus metabolitos (Glufosinato y Ampa)
                                             </label>
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="fosetyl" value="(PAFA)            Fosetil Al " >
+                                            <input class="form-check-input" type="checkbox" id="fosetyl" value="(PAFA)           Fosetil Al " >
                                             <label class="form-check-label" for="fosetyl">
                                               Fosetyl-Al, ácido fosfónico y sales
                                             </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="MINO" value="(MINO)            Hidrocarburos de aceite mineral: MOSH y MOAH" >
+                                                <input class="form-check-input" type="checkbox" id="MINO" value="(MINO)           Hidrocarburos de aceite mineral: MOSH y MOAH" >
                                                 <label class="form-check-label" for="MINO">
                                                   Determinación de Hidrocarburos de aceite mineral, conocidos como MOSH y MOAH
                                                 </label>
@@ -509,7 +478,7 @@
                                                 </label>
                                               </div>
                                               <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="gmo" value="(GMOS)              Organismos genéticamente modificados, (análisis de presencia o no presencia)">
+                                                <input class="form-check-input" type="checkbox" id="gmo" value="(GMOS)          Organismos genéticamente modificados, (análisis de presencia o no presencia)">
                                                 <label class="form-check-label" for="gmo">
                                                   GMO: Organismos genéticamente modificados, (análisis de presencia o no presencia)
                                                 </label>
@@ -517,28 +486,7 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <!--
-                        <script>
-                            // Función para manejar el cambio en los elementos de entrada
-                            function handleChange(event) {
-                              const element = event.target;
-                             element.value = element.checked ? 'X' : '';
-                             }
-
-                                // Lista de IDs de los elementos
-                                const ids = ['normal', 'express'
-                                ];
-
-                                // Añadir el event listener a cada elemento con ID en la lista
-                                ids.forEach(id => {
-                                     const element = document.getElementById(id);
-                                     if (element) {
-                                     element.addEventListener('change', handleChange);
-                                  }
-                             });   
-                        </script>
-                        -->
+                        </div>                        
 
                          <!-- Checbox  MRL -->
                     
@@ -636,7 +584,7 @@
                               if (this.checked) {
                                 $(collapseContent).collapse('show')
                                 document.getElementById('metalesSi').checked;
-                                document.getElementById('metalesSi').value = 'Metales:';
+                                document.getElementById('metalesSi').value = 'Metales:        ';
                                 
                               } else {
                                 $(collapseContent).collapse('hide') 
