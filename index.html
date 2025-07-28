@@ -13,7 +13,23 @@
     <script src="app.js"></script>
     <link rel="icon" href = "imagenes/logoico.ico">
 
-
+    <style>
+      .descarga-formato {
+        font-size: 0.95rem;
+        text-decoration: none;
+        color: #007bff;
+        padding: 10px 0;
+        display: inline-block;
+      }
+    
+      @media (max-width: 576px) {
+        .descarga-formato {
+          font-size: 0.85rem;
+          text-align: center;
+          width: 100%;
+        }
+      }
+    </style>
     <style>  
         .email-button {  
                 background-color: #31475d;  
@@ -48,12 +64,12 @@
 
 <body>
     <header>
-        <div>
-            <img src="imagenes/PrimorisLogo.png" width="180">
-            <a class="position-absolute top-0 end-0" href="imagenes/Formato para Solicitud de Análisis Manual.xlsx"> (<span style="font-size: 0.9em;">Clic: para descargar formato en Excel</span>)</a>
-        </div>
-         <br/>
-        <div >
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <img src="imagenes/PrimorisLogo.png" width="180">
+                <a class="descarga-formato" href="imagenes/Formato para Solicitud de Análisis Manual.xlsx">
+                    (Clic: para descargar formato en Excel)
+                </a>
+            </div>
             <h2 class="text-center">Diligenciamiento solicitud de servicio</h2>
         </div>
     </header>
