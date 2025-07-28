@@ -61,16 +61,43 @@
          }  
         </style>           
 </head>
+<head>
+  <meta charset="UTF-8">
+  <title>formulario</title>
+  <style>
+    .container {
+      position: relative;
+      width: 100%;
+    }
 
+    .logo {
+      width: 180px; 
+    }
+
+    .descarga {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .descarga {
+        font-size: 12px;
+        top: 5px;
+        right: 5px;
+      }
+    }
+  </style>
+</head>
 <body>
-        <header>
-          <div class="header-container">
-            <img src="imagenes/PrimorisLogo.png" class="logo">
-            <a href="imagenes/Formato para Solicitud de Análisis Manual.xlsx" class="formato-link">
-              (Clic: para descargar formato en Excel)
-            </a>
-          </div>
-        </header>
+  <div class="container">
+    <img src="imagenes/PrimorisLogo.png" alt="Logo Primoris" class="logo">
+    <a href="imagenes/Formato para Solicitud de Análisis Manual.xlsx" class="descarga" download>(Clic: para descargar formato en Excel)</a>
+  </div>
+
+  <h1>Diligenciamiento solicitud de servicio</h1>
+
   <style>  
         .minimize-space {  
             margin-bottom: 1px;  
