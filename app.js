@@ -117,6 +117,7 @@ window.addEventListener('load', async () => {
         let oxEtil = document.getElementById('oxEtil').value;
         let acrilamida = document.getElementById('acrilamida').value;
         let amitraz= document.getElementById('amitraz').value;
+        let patulina= document.getElementById('patulina').value;
         let gmo = document.getElementById('gmo').value;
         let anotaciones = document.getElementById('anotaciones').value; // observaciones
         let fechaenvio = document.getElementById('fechaenvio').value;
@@ -128,7 +129,7 @@ window.addEventListener('load', async () => {
         
 
         generatePDF( NombreSolicitante, Nit, TelefonoContacto, Direccion, Cuidad, PersonaContacto,NombreFacturante,NitFacturante,DireccionFacturante,CuidadFacturante,TelefonoFacturante, fact,matriz,fecha, codigo,multiresiduo,micotoxinaSeleccionada,ditios,antimonio,arsenico,boro,cadmio,cinc,cobre,cromo,estaño,hierro, magnesio,manganeso,mercurio,plata, plomo,selenio,sodio,potasio,metalesSi
-                    ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,gmo,anotaciones,fechaenvio,enviante, normal,express
+                    ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,anotaciones,fechaenvio,enviante, normal,express
         
                      
             );
@@ -137,7 +138,7 @@ window.addEventListener('load', async () => {
 });
 
 async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, Ciudad,PersonaContacto,NombreFacturante,NitFacturante,DireccionFacturante,CuidadFacturante,TelefonoFacturante,fact, matriz,fecha,codigo, multiresiduo,micotoxinaSeleccionada,ditios,antimonio,arsenico,boro,cadmio,cinc,cobre,cromo,estaño,hierro, magnesio,manganeso,mercurio,plata, plomo,selenio,sodio,potasio, metalesSi
-                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,gmo,anotaciones, fechaenvio, enviante,normal,express
+                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,gmo,patulina,anotaciones, fechaenvio, enviante,normal,express
                       
                           
     ) {
@@ -221,6 +222,9 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     }
     if (document.getElementById("amitraz").checked) {
         pdf.text(document.getElementById("amitraz").value, 60, 445);
+    }
+    if (document.getElementById("patulina").checked) {
+        pdf.text(document.getElementById("patulina").value, 60, 465);
     }
     if (document.getElementById("gmo").checked) {
         pdf.text(document.getElementById("gmo").value, 60, 455);
