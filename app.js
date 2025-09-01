@@ -119,6 +119,7 @@ window.addEventListener('load', async () => {
         let amitraz= document.getElementById('amitraz').value;
         let patulina= document.getElementById('patulina').value;
         let gmo = document.getElementById('gmo').value;
+        let doscuatroD= document.getElementById('doscuatroD').value;
         let anotaciones = document.getElementById('anotaciones').value; // observaciones
         let fechaenvio = document.getElementById('fechaenvio').value;
         let enviante = document.getElementById('enviante').value;
@@ -129,7 +130,7 @@ window.addEventListener('load', async () => {
         
 
         generatePDF( NombreSolicitante, Nit, TelefonoContacto, Direccion, Cuidad, PersonaContacto,NombreFacturante,NitFacturante,DireccionFacturante,CuidadFacturante,TelefonoFacturante, fact,matriz,fecha, codigo,multiresiduo,micotoxinaSeleccionada,ditios,antimonio,arsenico,boro,cadmio,cinc,cobre,cromo,estaño,hierro, magnesio,manganeso,mercurio,plata, plomo,selenio,sodio,potasio,metalesSi
-                    ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,anotaciones,fechaenvio,enviante, normal,express
+                    ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,doscuatroD,anotaciones,fechaenvio,enviante, normal,express
         
                      
             );
@@ -138,7 +139,7 @@ window.addEventListener('load', async () => {
 });
 
 async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, Ciudad,PersonaContacto,NombreFacturante,NitFacturante,DireccionFacturante,CuidadFacturante,TelefonoFacturante,fact, matriz,fecha,codigo, multiresiduo,micotoxinaSeleccionada,ditios,antimonio,arsenico,boro,cadmio,cinc,cobre,cromo,estaño,hierro, magnesio,manganeso,mercurio,plata, plomo,selenio,sodio,potasio, metalesSi
-                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,anotaciones, fechaenvio, enviante,normal,express
+                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,doscuatroD,anotaciones, fechaenvio, enviante,normal,express
                       
                           
     ) {
@@ -214,7 +215,7 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
         pdf.text(document.getElementById("diquat").value, 60, 415);
     }
     if (document.getElementById("oxEtil").checked) {
-        pdf.text(document.getElementById("oxEtil").value, 60, 425);
+        pdf.text(document.getElementById("oxEtil").value, 60, 475);
     }
     if (document.getElementById("acrilamida").checked) {
         pdf.text(document.getElementById("acrilamida").value, 60, 435);
@@ -227,6 +228,9 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     }
     if (document.getElementById("gmo").checked) {
         pdf.text(document.getElementById("gmo").value, 60, 455);
+    }
+    if (document.getElementById("doscuatroD").checked) {
+        pdf.text(document.getElementById("doscuatroD").value, 60, 425);
     }
 
 
