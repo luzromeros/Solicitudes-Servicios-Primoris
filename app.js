@@ -138,7 +138,7 @@ window.addEventListener('load', async () => {
 });
 
 async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, Ciudad,PersonaContacto,NombreFacturante,NitFacturante,DireccionFacturante,CuidadFacturante,TelefonoFacturante,fact, matriz,fecha,codigo, multiresiduo,micotoxinaSeleccionada,ditios,antimonio,arsenico,boro,cadmio,cinc,cobre,cromo,estaño,hierro, magnesio,manganeso,mercurio,plata, plomo,selenio,sodio,potasio, metalesSi
-                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,gmo,patulina,anotaciones, fechaenvio, enviante,normal,express
+                            ,glyfo,fosetyl,clorato,diquat,oxEtil,acrilamida,amitraz,patulina,gmo,anotaciones, fechaenvio, enviante,normal,express
                       
                           
     ) {
@@ -151,7 +151,7 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     pdf.setFontSize(9);
     pdf.text(NombreSolicitante, 130, 155);
     pdf.text(Nit, 448, 155);
-    pdf.setFontSize(8);}
+    pdf.setFontSize(8);
     pdf.text(Direccion, 130, 165);
     pdf.text(Ciudad, 448, 165);
     pdf.text(PersonaContacto, 130, 175);
@@ -193,7 +193,7 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     .filter(value => value.trim() !== '')  
     .join(', ');  
 
-    pdf.setFontSize(9);
+    pdf.setFontSize(8);
     pdf.text(selectedValues, 118, 365);
      
     pdf.text(metalesSi.value, 60, 365);
