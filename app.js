@@ -177,81 +177,97 @@ async function generatePDF(NombreSolicitante, Nit, TelefonoContacto, Direccion, 
     //pdf.text(infadicional, 220, 315);
 
 
-    
+    // --- LISTADO ORGANIZADO ---
+    let startY = 335;   
+    let lineHeight = 10; 
+
     pdf.setFontSize(9);
-    pdf.text(multiresiduo, 60, 335);
-    pdf.text(ditios,60,345);
-    pdf.text(micotoxinaSeleccionada, 60, 355);
-    
-    
-    // IMPRESION METALES
+
+    // --- MULTIRESIDUO ---
+    if (multiresiduo.trim() !== "") {
+    pdf.text("Multiresiduos:", 60, startY);
+    startY += lineHeight;
+    pdf.text("- " + multiresiduo, 75, startY);
+    startY += lineHeight + 7; 
+    }
+
+    // --- DITIOS ---
+    if (ditios.trim() !== "") {
+    pdf.text("Ditios:", 60, startY);
+    startY += lineHeight;
+    pdf.text("- " + ditios, 75, startY);
+    startY += lineHeight + 7;
+    }
+
+    // --- MICOTOXINAS ---
+    if (micotoxinaSeleccionada.trim() !== "") {
+    pdf.text("Micotoxinas:", 60, startY);
+    startY += lineHeight;
+    pdf.text("- " + micotoxinaSeleccionada, 75, startY);
+    startY += lineHeight + 7;
+    }
+
+    // --- METALES ---
     const metals = [
-        'antimonio', 'arsenico', 'boro', 'cadmio', 'cinc', 'cobre','cromo', 'estaño', 'hierro', 'magnesio', 'manganeso', 'mercurio','plata', 'plomo', 'selenio', 'sodio', 'potasio'];
-    
+    'antimonio', 'arsenico', 'boro', 'cadmio', 'cinc', 'cobre','cromo',
+    'estaño','hierro','magnesio','manganeso','mercurio','plata','plomo',
+    'selenio','sodio','potasio'
+    ];
+
     const selectedValues = metals
     .filter(metalId => document.getElementById(metalId).checked)  
     .map(metalId => document.getElementById(metalId).value)  
-    .filter(value => value.trim() !== '')  
-    .join(', ');  
-
-    pdf.setFontSize(8);
-    pdf.text(selectedValues, 118, 365);
-     
-    pdf.text(metalesSi.value, 60, 365);
-
-    if (document.getElementById("glyfo").checked) {
-        pdf.text(document.getElementById("glyfo").value, 60, 375);  // Ajusta coordenadas
-    }
-    if (document.getElementById("fosetyl").checked) {
-        pdf.text(document.getElementById("fosetyl").value, 60, 385);
-    }
-    if (document.getElementById("MINO").checked) {
-        pdf.text(document.getElementById("MINO").value, 60, 395);
-    }
-    if (document.getElementById("clorato").checked) {
-        pdf.text(document.getElementById("clorato").value, 60, 405);
-    }
-    if (document.getElementById("diquat").checked) {
-        pdf.text(document.getElementById("diquat").value, 60, 415);
-    }
-    if (document.getElementById("oxEtil").checked) {
-        pdf.text(document.getElementById("oxEtil").value, 60, 475);
-    }
-    if (document.getElementById("acrilamida").checked) {
-        pdf.text(document.getElementById("acrilamida").value, 60, 435);
-    }
-    if (document.getElementById("amitraz").checked) {
-        pdf.text(document.getElementById("amitraz").value, 60, 445);
-    }
-    if (document.getElementById("patulina").checked) {
-        pdf.text(document.getElementById("patulina").value, 60, 465);
-    }
-    if (document.getElementById("gmo").checked) {
-        pdf.text(document.getElementById("gmo").value, 60, 455);
-    }
-    if (document.getElementById("doscuatroD").checked) {
-        pdf.text(document.getElementById("doscuatroD").value, 60, 425);
+    .filter(value => value.trim() !== '');
+    
+    if (selectedValues.length > 0) {
+    pdf.text("Metales:", 60, startY);
+    startY += lineHeight;
+    pdf.text("- " + selectedValues.join(", "), 70, startY);
+    startY += lineHeight + 7; 
     }
 
+    // --- OTROS ---
+    const otrosIds = [
+    "glyfo","fosetyl","MINO","clorato","diquat",
+    "oxEtil","acrilamida","amitraz","gmo","patulina","doscuatroD"
+    ];
+
+    const otrosSeleccionados = otrosIds
+    .map(id => {
+        const el = document.getElementById(id);
+        return el && el.checked ? el.value : null;
+    })
+    .filter(v => v !== null);
+
+    if (otrosSeleccionados.length > 0) {
+    pdf.text("Otros:", 60, startY);
+    startY += lineHeight;
+    otrosSeleccionados.forEach(o => {
+        pdf.text("- " + o, 75, startY);
+        startY += lineHeight;
+    });
+    startY += 7;
+    }
+    
 
     const orgSi = document.getElementById('OrgSi');
     const orgNo = document.getElementById('OrgNo');
     if (orgSi.checked) {
-    pdf.text('X', 358, 488); // Coordenadas para el "Sí"
+    pdf.text('X', 358, 488); 
     }
     if (orgNo.checked) {
-    pdf.text('X', 448, 488); // Coordenadas para el "No"
+    pdf.text('X', 448, 488); 
     }
     pdf.setFontSize(10);
     if (document.getElementById("normal").checked) {
-    pdf.text("X", 157, 548);  // Coordenadas para "normal"
+    pdf.text("X", 157, 548);  
     } else if (document.getElementById("express").checked) {
-    pdf.text("X", 292, 548);  // Coordenadas para "express"
+    pdf.text("X", 292, 548);  
     }
  
 
     pdf.setFontSize(8);
-    const maxWidth = 450; // ancho máximo
+    const maxWidth = 450; 
     const lines = pdf.splitTextToSize(anotaciones, maxWidth);  
     pdf.text(lines, 125, 514); 
    
