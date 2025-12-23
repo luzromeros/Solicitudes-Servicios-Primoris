@@ -201,7 +201,7 @@ const mensajesPopup = {
   PHOS: '⚠️ Esta muestra debe enviarse en un <b>empaque herméticamente sellado</b>.',
   SULFI: '⚠️ Esta muestra debe enviarse en un <b>empaque herméticamente sellado</b>.',
   VINAC: '⚠️ Esta muestra debe enviarse en un <b>empaque herméticamente sellado</b>.',
-  CLTOT: '⚠️ Para este método es necesario enviar la <b>muestra de forma independiente</b>.'
+  cloro: '⚠️ Para este método es necesario enviar la <b>muestra de forma independiente</b>.'
 };
 
 // 
