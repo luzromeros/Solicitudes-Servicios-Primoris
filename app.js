@@ -36,6 +36,7 @@ const alertasEspeciales = {
     'card-sulfi': '⚠️ Esta muestra debe enviarse en un <b>empaque herméticamente sellado</b>.',
     'card-vinac': '⚠️ Esta muestra debe enviarse en un <b>empaque herméticamente sellado</b>.',
     'card-cloro': '⚠️ Para este método es necesario enviar la <b>muestra de forma independiente</b>.'
+    
 };
 
 function verificarAlertaEspecial(card) {
@@ -83,17 +84,15 @@ function switchAnalisisTab(name, btn) {
 }
 
 // ── Carga imagen para PDF ──
-function loadImage(url) {
-    return new Promise(resolve => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.responseType = "blob";
-        xhr.onload = function () {
-            const reader = new FileReader();
-            reader.onload = function (event) { resolve(event.target.result); };
-            reader.readAsDataURL(this.response);
-        }
-        xhr.send();
+async function loadImage(url) {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('No se pudo cargar la imagen: ' + url);
+    const blob = await r.blob();
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = e => resolve(e.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
     });
 }
 
@@ -150,9 +149,16 @@ window.addEventListener('load', () => {
             alert("Por favor, completa el campo 'Empresa o persona titular del resultado'.");
             return;
         }
+
+        // Disparar descarga del PDF automáticamente
+        document.getElementById("form").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+
         const destinatarios = "registro@primoris-lab.ec;luz.romero@primoris-lab.ec;christian.velasco@primoris-lab.ec";
         const asunto = `Solicitud de servicio / Demanda de análisis ${nombre}`;
-        const cuerpo = `Cordial saludo, Adjunto solicitud de servicio para ...`;
+        const cuerpo =
+            `Cordial saludo, Adjunto solicitud de servicio para ${nombre}.\n\n` +
+            `⚠️ ¡IMPORTANTE! ⚠️\n` +
+            `No olvide adjuntar en este correo la solicitud PDF generada.`;
         window.location.href = `mailto:${destinatarios}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
     });
 });
@@ -194,51 +200,48 @@ async function generatePDF(
     pdf.text(fecha, 448, 263);
     pdf.text(codigo, 175, 280);
 
-    // Análisis seleccionados — tabla dos columnas: Código | Descripción
-    let startY = 335;
-    const lineHeight = 11;
-    const colCodigo = 60;
-    const colDesc   = 155;
-    const colDescW  = 390;
+    // Análisis seleccionados
+    const colCodigo  = 60;
+    const colDesc    = 165;
+    const SPACE_AVAIL = 130;   // pt disponibles entre startY=338 y el borde de la sección siguiente
+    let startY = 338;
 
     if (todosAnalisis.length > 0) {
-        // Cabecera tabla
-        pdf.setFontSize(7.5);
-        pdf.setTextColor(120, 120, 120);
-        pdf.text("CÓDIGO", colCodigo, startY);
-        pdf.text("DESCRIPCIÓN", colDesc, startY);
-        startY += 3;
-        pdf.setDrawColor(180, 180, 180);
-        pdf.setLineWidth(0.4);
-        pdf.line(colCodigo, startY, 545, startY);
-        startY += lineHeight - 2;
-        pdf.setTextColor(0, 0, 0);
+        const n = todosAnalisis.length;
+
+        // Tamaño de fuente y alto de fila se reducen cuando hay muchos análisis
+        // Mínimos razonables: fontSize 5.5 pt, rowH 8 pt
+        const fontSize = Math.max(5.5, Math.min(8,   (SPACE_AVAIL / n) * 0.62));
+        const ROW_H    = Math.max(8,   Math.min(14,  SPACE_AVAIL / n));
+
+        // Ancho descripción se recalcula con la fuente elegida
+        const colDescW = 375;
 
         todosAnalisis.forEach((analisis, i) => {
             if (i % 2 === 0) {
-                pdf.setFillColor(245, 249, 243);
-                pdf.rect(colCodigo - 2, startY - 8, 487, lineHeight + 1, 'F');
+                pdf.setFillColor(246, 250, 244);
+                pdf.rect(colCodigo - 4, startY - ROW_H + 2, 490, ROW_H, 'F');
             }
+
             const matchCodigo = analisis.match(/^\(([^)]+)\)/);
-            const codigo_pdf  = matchCodigo ? matchCodigo[1] : analisis.split(' ').slice(0,2).join(' ');
+            const codigo_pdf  = matchCodigo ? matchCodigo[1] : analisis.split(' ').slice(0, 2).join(' ');
             const desc_pdf    = matchCodigo
                 ? analisis.replace(/^\([^)]+\)\s*/, '').trim()
                 : analisis;
 
-            pdf.setFontSize(8);
+            pdf.setFontSize(fontSize);
             pdf.setFont(undefined, 'bold');
+            pdf.setTextColor(45, 90, 15);
             pdf.text(codigo_pdf, colCodigo, startY);
-            pdf.setFont(undefined, 'normal');
-            const descLines = pdf.splitTextToSize(desc_pdf, colDescW);
-            pdf.text(descLines, colDesc, startY);
 
-            const rowH = Math.max(lineHeight, descLines.length * lineHeight);
-            pdf.setDrawColor(220, 220, 220);
-            pdf.setLineWidth(0.2);
-            pdf.line(colCodigo - 2, startY + 3, 545, startY + 3);
-            startY += rowH;
+            pdf.setFont(undefined, 'normal');
+            pdf.setTextColor(30, 30, 30);
+            // Con fuente pequeña las descripciones caben en 1 línea; splitTextToSize lo confirma
+            const descLines = pdf.splitTextToSize(desc_pdf, colDescW);
+            pdf.text(descLines[0], colDesc, startY);   // solo primera línea para respetar el ROW_H dinámico
+
+            startY += ROW_H;
         });
-        startY += 6;
     }
 
     // Orgánico
